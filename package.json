@@ -34,14 +34,14 @@
     "axios": "^1.5.0",
     "cheerio": "*",
     "semver": "^7.5.4",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.31",
     "@types/jest": "^29.5.4",
     "@types/node": "^20.5.7 ",
     "@types/semver": "^7.5.0",
-    "@types/uuid": "^9.0.2",
+    "@types/uuid": "^9.0.4",
     "@typescript-eslint/parser": "^6.4.1",
     "@vercel/ncc": "^0.36.1",
     "eslint": "^8.48.0",
