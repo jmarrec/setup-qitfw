@@ -109,6 +109,7 @@ function getInstallerLinkForSpecificVersion(requestedVersion, installerExtension
         core.debug(`Trying to parse ${qtPageUrl}`);
         let installerLink = '';
         const linux_has_arm64 = semver.gte(requestedVersion, '4.7.0');
+        const windows_has_arm64 = semver.gte(requestedVersion, '4.8.1');
         yield axios_1.default
             .get(qtPageUrl)
             .then((response) => {
@@ -120,6 +121,9 @@ function getInstallerLinkForSpecificVersion(requestedVersion, installerExtension
                     thisLink.endsWith(installerExtension) &&
                     (installerExtension != 'run' ||
                         !linux_has_arm64 ||
+                        thisLink.includes(arch)) &&
+                    (installerExtension != 'exe' ||
+                        !windows_has_arm64 ||
                         thisLink.includes(arch))) {
                     installerLink = url.resolve(qtPageUrl, thisLink);
                 }
@@ -389,7 +393,7 @@ function runInstallQtIFW(qtIFWPath) {
                 '-eo',
                 'pipefail',
                 '-c',
-                'hdiutil detach ./qtifw_installer'
+                'hdiutil detach ./qtifw_installer -force'
             ], options);
         }
         const binDir = path.join(installDir, 'bin');

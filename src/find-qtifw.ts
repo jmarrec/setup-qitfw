@@ -81,6 +81,7 @@ export async function getInstallerLinkForSpecificVersion(
   let installerLink = '';
 
   const linux_has_arm64: boolean = semver.gte(requestedVersion, '4.7.0');
+  const windows_has_arm64: boolean = semver.gte(requestedVersion, '4.8.1');
 
   await axios
     .get(qtPageUrl)
@@ -95,6 +96,9 @@ export async function getInstallerLinkForSpecificVersion(
           thisLink.endsWith(installerExtension) &&
           (installerExtension != 'run' ||
             !linux_has_arm64 ||
+            thisLink.includes(arch)) &&
+          (installerExtension != 'exe' ||
+            !windows_has_arm64 ||
             thisLink.includes(arch))
         ) {
           installerLink = url.resolve(qtPageUrl, thisLink);

@@ -15,7 +15,7 @@ test('Split a path', () => {
 
 test('A Major is found', async () => {
   const qtifwindex: string = await findQtIFW.requestQtIndex('4.x');
-  await expect(qtifwindex).toEqual('4.8.0');
+  await expect(qtifwindex).toEqual('4.8.1');
 });
 
 test('A major.minor is found', async () => {
