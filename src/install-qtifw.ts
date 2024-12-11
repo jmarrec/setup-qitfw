@@ -182,7 +182,7 @@ async function runInstallQtIFW(qtIFWPath: string) {
         '-eo',
         'pipefail',
         '-c',
-        'hdiutil detach ./qtifw_installer'
+        'hdiutil detach ./qtifw_installer -force'
       ],
       options
     );
